@@ -1,20 +1,25 @@
 <?php 
-include_once 'inc/topHeader.php' ?>
+// include_once __DIR__."/../../Core/config2.php";
+
+include_once '../inc/topHeader.php' ?>
 <title><?php echo SITENAME;?> </title>
 <?php
-include_once "inc/header.php";
-include_once "inc/navbar.php";
-include_once "Core/config2.php";
+include_once "../inc/header.php";
+include_once "../inc/navbar.php";
 ?>
+
+<!-- نحكي صوت؟-->
 <?php
+// Load the database configuration file
+include_once '../../../Core/config2.php';
+
     // if (isset($_GET['search']) || !empty($_GET['search'])) {
     //     $search = mysqli_real_escape_string($db->link, $fm->validation($_GET['search']));
     // }
     // else{
     //     header("Location:404.php");
     // }
-?>
-<?php
+
     // $query = "SELECT * FROM news_post WHERE title LIKE '%$search%' OR body LIKE '%$search%' OR tags LIKE '%search%'";
     // $post = $db->select($query);
     // if ($post) {

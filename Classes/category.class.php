@@ -3,7 +3,6 @@ class Category extends MysqliConnect{
     private $name;
     public function setInput($name){
         $this->name =$name;
-
     }
         public function getcategory(){
             $this->query('name', "category");
