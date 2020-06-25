@@ -7,8 +7,6 @@ include_once '../inc/topHeader.php' ?>
 include_once "../inc/header.php";
 include_once "../inc/navbar.php";
 ?>
-
-<!-- نحكي صوت؟-->
 <?php
 // Load the database configuration file
 include_once '../../../Core/config2.php';
