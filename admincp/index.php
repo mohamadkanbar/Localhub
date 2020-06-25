@@ -11,7 +11,6 @@ include_once "inc/navbar.php";
 <!-- بداية تجريب الحلقة-->
 <!--  -->
 </a>
-
 <div class="container" style="padding-top: 20px;">
   <div class="row">
     <div class="col-sm">
