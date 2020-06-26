@@ -3,7 +3,6 @@
         <div class="form-group">
             <label for="firstname">first name</label>
             <input type="text" class="form-control col-md-6" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : null; ?>" name="firstname" id="firstname">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
             <label for="lastname">Last name</label>
@@ -12,6 +11,8 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control col-md-6" value="<?php echo isset($_POST['email']) ? $_POST['email'] : null; ?>" name="email" id="email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -35,4 +36,6 @@
             <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div> -->
         <button type="submit" name="register" class="btn btn-success btn-block col-md-8">Register</button>
+
+        <p class="form-control col-md-8" style="padding: 5px; margin: 5px;">Already have an account? <a href="login.php">Login</a></p>
 </form>

@@ -1,12 +1,13 @@
 
 <?php 
-include_once __DIR__."/../Core/config2.php";
 
 include_once 'inc/topHeader.php' ?>
 <title><?php echo SITENAME;?> </title>
 <?php
 include_once "inc/header.php";
 include_once "inc/navbar.php";
+include_once __DIR__."/../Core/config2.php";
+
 ?>
 <!-- بداية تجريب الحلقة-->
 <!--  -->

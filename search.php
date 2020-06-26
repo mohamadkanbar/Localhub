@@ -35,7 +35,7 @@ include_once "Core/config2.php";
         </form>
     </div>
     <?php $search = $_GET['search']; ?>
-    <h1 style="padding: 20px; margin-left: 20px; color:green;">Result search about  : "<?php echo $search;?>"</h1>
+    <h1 style="padding: 20px; margin-left: 20px; color:green;">Search Results for: "<?php echo $search;?>"</h1>
     <!-- Data list table --> 
     <table class="table table-striped table-bordered " style="margin: 30px;">
         <thead class="thead-dark ">

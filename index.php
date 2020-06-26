@@ -63,10 +63,10 @@ include_once "Core/config2.php";
  <?php  
  include_once "Core/config2.php";
 
- $query ="SELECT * FROM csvtable ORDER BY ID_CSV desc";  
- $result = mysqli_query($conn, $query);  
- while($row = mysqli_fetch_array($result))  
- {  
+//  $query ="SELECT * FROM announcemnt ORDER BY ID_CSV desc";  
+//  $result = mysqli_query($conn, $query);  
+//  while($row = mysqli_fetch_array($result))  
+//  {  
  ?>  
 
 <div class="container">
@@ -106,8 +106,8 @@ include_once "Core/config2.php";
 	</div>
 	</div>
 	</div>
-    <?php
- }
+ <?php 
+//  }
  ?>
 </main>
 <?php 
