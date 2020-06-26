@@ -85,7 +85,7 @@ if(isset($_POST['submitForm'])) {
     <label for="exampleInputEmail1">End date <span class="required" style="color: red;">*</span></label>
     <input type="date" name="fend" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
-  <button type="submit" name="submitForm" class="btn btn-primary">Add Anounnecment</button>
+  <button type="submit" name="submitForm" class="btn btn-primary">Add new Anounnecment</button>
 </form>
 <?php
 require_once '../inc/footer.php';

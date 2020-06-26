@@ -47,7 +47,7 @@
                     <li class="glyphicon glyphicon-log-out " style="margin-top:10px; color:greenyellow;"><span>Welcome <?php echo $_SESSION['user']['fname']; ?> </span>
                     </li>
                     <li>
-                    <a style="margin: 10px; color:slateblue; color:cornsilk;" href="admincp/index.php" class="btn btn-outline-success my-2 my-sm-0"> Control Panal </a>
+                    <a style="margin: 10px; color:slateblue; color:cornsilk;" href="manger/index.php" class="btn btn-outline-success my-2 my-sm-0"> Control Panal </a>
                     </li>
                     <li>
                     <a style="margin: 10px; color:slateblue; color:cornsilk;" href="index.php?logout=true" class="btn btn-outline-success my-2 my-sm-0"> Sing out </a>

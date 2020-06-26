@@ -8,8 +8,6 @@ include_once '../inc/topHeader.php' ?>
 include_once "../inc/header.php";
 include_once "../inc/navbar.php";
 ?>
-
-<!-- نحكي صوت؟-->
 <?php
 // Load the database configuration file
 include_once '../../../Core/config2.php';
@@ -79,15 +77,13 @@ if(!empty($_GET['status'])){
                 <th>Update</th>
                 <th>Delete</th>
                 <th>Active</th>
-
             </tr>
         </thead>
-
         <tbody>
         <?php
         // Get member rows
-        $id = $_SESSION["user"]["id"];
-        $result = $conn->query("SELECT * FROM Announcement WHERE userid = $id ");
+        // $id = $_SESSION["user"]["id"];
+        $result = $conn->query("SELECT * FROM Announcement ");
         
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
@@ -104,46 +100,14 @@ if(!empty($_GET['status'])){
                 <td><?php echo $row['field2']; ?></td>
                 <td><a href="update.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">Update</a></td>
                 <td><a href="delete.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">Delete</a></td>
-                <td >
-                <?php
-
-                    //NOT i will add function for change value in field isActive
-                    $sql = "SELECT 	*  FROM Announcement WHERE isActive = 1";
-                    $results = mysqli_query($conn, $sql);
-                    $sql2 = "SELECT *  FROM Announcement WHERE isActive = 0";
-                    $results2 = mysqli_query($conn, $sql2);   
-
-                    if (mysqli_num_rows($results) > 0) {
-                        // output data of each row
-                        while($row = mysqli_fetch_assoc($results)) {
-                            
-                            echo "<button id='btn' class='btn btn-success' onclick='\"UPDATE Announcement SET isActive = 0;\"'>Active</button>";
-                        }
-                    }  
-                    if (mysqli_num_rows($results2) > 0) {
-                        // output data of each row
-                        while($row2 = mysqli_fetch_assoc($results2)) {
-                            echo "<button id='btn' class='btn btn btn-secondary' onclick='\"UPDATE Announcement SET isActive = 1;\"'>Inactive</button>";
-
-                        }
-                    }  
-
-                    // if(isset($_POST['update'])){
-                    //     function myFunction1(){
-                    //      $result = mysqli_query($conn, "UPDATE Announcement SET isActive = 0;");
-                    //  return $result;
-                    //       else 
-                    //       function myFunction2(){
-                    //          $result = mysqli_query($conn, "UPDATE Announcement SET isActive = 1;");
-                    //      return $result;
-                              
-                    //          }
-                    //      }
-                                    
-     
-                ?>
+                <td>
+                    <i data="<?php echo $row['id'];?>" class="status_checks btn
+                    <?php echo ($row['isActive'])?
+                    'btn-success': 'btn-danger'?>"><?php echo ($row['isActive'])? 'Active' : 'Inactive'; ?>
+                    </i>
                 </td>
             </tr>
+
         <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>
         <?php } ?>
@@ -151,7 +115,30 @@ if(!empty($_GET['status'])){
     </table>
 </div>
 
+<!-- script for activ and inactive -->
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).on('click','.status_checks',function(){
+        var status = ($(this).hasClass("btn-success")) ? '0' : '1';
+        var msg = (status=='0')? 'Deactivate the Announcement' : 'Activate the Announcement';
+        if(confirm("Are you sure to "+ msg)){
+            var current_element = $(this);
+            url = "ajax.php";
+            $.ajax({
+            type:"POST",
+            url: url,
+            data: {id:$(current_element).attr('data'),status:status},
+            success: function(data)
+            {   
+                location.reload();
+            }
+            });
+        }      
+        });
+    </script>
 <script>
+
+// For downloae fils CSV
 function formToggle(ID){
     var element = document.getElementById(ID);
     if(element.style.display === "none"){
