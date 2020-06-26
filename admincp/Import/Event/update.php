@@ -11,16 +11,23 @@ include_once "../inc/navbar.php";
 // Load the database configuration file
 include_once '../../../Core/config2.php';
 
-
 // mettre le data dans à elemetes
+$id=$_GET['id'];
     if(isset($_GET['id'])){
-            $result = $conn->query("SELECT * FROM Announcement WHERE id = :id");
+            $results = $conn->query("SELECT * FROM Announcement WHERE id = $id");
         
-            if($result->num_rows > 0){
-                while($row = $result->fetch_assoc()){
+            while($res = mysqli_fetch_array($results)){
+
+
+
+
+
+
+
+         
 
             ?>
-<form action="create.php" method="post" enctype="multipart/form-data">
+<form action="update.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $results['id'];?>">
     <tr>
     <td><label>Title : </label></td>  
@@ -44,6 +51,10 @@ include_once '../../../Core/config2.php';
     <td>  <input type="text" name="email" value = "<?php echo $results['email']; ?>"></td>
     </tr>
     <tr>
+    <td> <label>Active : </label></td>
+    <td>  <input type="text" name="active" value = "<?php echo $results['isActive']; ?>"></td>
+    </tr>
+    <tr>
     <td> <label>Date Start the Event : </label></td>
     <td>  <input type="text" name="field1" value = "<?php echo $results['field1']; ?>"></td>
     </tr>
@@ -58,8 +69,8 @@ include_once '../../../Core/config2.php';
     </tr>
 </form>
             <?php
-     
-    }}}
+        }
+    }
     // <th>#ID</th>
 // <th>title</th>
 // <th>disc</th>
@@ -67,26 +78,29 @@ include_once '../../../Core/config2.php';
 // <th>phone</th>
 // <th>email</th>
 // <th>website</th>
+// isActive
 // <th>Date Start the Event</th>
 // <th>Date End the Event</th>
 
     //chosed data in table
-if(isset($_GET['id']) && isset($_GET['title']) && isset($_GET['disc']) && isset($_GET['location']) && isset($_GET['phone']) && isset($_GET['email']) && isset($_GET['website']) && isset($_GET['field1']) && isset($_GET['field2'])){
+if(isset($_GET['id']) && isset($_GET['title']) && isset($_GET['disc']) && isset($_GET['location']) && isset($_GET['phone']) && isset($_GET['email']) && isset($_GET['active']) && isset($_GET['website']) && isset($_GET['field1']) && isset($_GET['field2'])){
     
-    $idTodb = $_GET['id'];
-    $titleToDb = $_GET['title'];
-    $discTodb = $pdo->quote($_GET['disc']);
-    $locationTodb = $pdo->quote($_GET['location']);
-    $phoneTodb = $_GET['phone'];
-    $emailToDb = $_GET['email'];
-    $websiteTodb = $pdo->quote($_GET['website']);
-    $field1Todb = $pdo->quote($_GET['field1']);
-    $field2Todb = $_GET['field2'];
+    $idTodb = $$conn->quote($_GET['id']);
+    $titleToDb = $conn->$_GET['title'];
+    $discTodb = $conn->$_GET['disc'];
+    $locationTodb = $conn->$_GET['location'];
+    $phoneTodb = $conn->$_GET['phone'];
+    $emailToDb = $conn->$_GET['email'];
+    $activelToDb = $conn->$_GET['isActive'];
+
+    $websiteTodb = $conn->$_GET['website'];
+    $field1Todb = $conn->$_GET['field1'];
+    $field2Todb = $conn->$_GET['field2'];
    
 
     //update data to database	
-    $result = $pdo->query("UPDATE Announcement SET title=$titleToDb, disc=$discTodb, location=$locationTodb, phone=$phoneTodb, email=$emailTodb, website=$websiteTodb, field1=$field1Todb, field2=$field2Todb  WHERE id= :id");
-    $result->bindParam(":id",$_GET['id']);
+    $result = $conn->query("UPDATE Announcement SET title=$titleToDb, disc=$discTodb, location=$locationTodb, phone=$phoneTodb, isActive=$activelToDb, email=$emailTodb, website=$websiteTodb, field1=$field1Todb, field2=$field2Todb  WHERE id= :id");
+    // $result->bindParam(":id",$_GET['id']);
 
 	//display success message
     echo "<font color='green'>Updated";

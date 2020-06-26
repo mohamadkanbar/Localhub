@@ -82,6 +82,7 @@ if(!empty($_GET['status'])){
 
             </tr>
         </thead>
+
         <tbody>
         <?php
         // Get member rows
@@ -103,9 +104,45 @@ if(!empty($_GET['status'])){
                 <td><?php echo $row['field2']; ?></td>
                 <td><a href="update.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">Update</a></td>
                 <td><a href="delete.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">Delete</a></td>
-                <td><a href="delete.php?id=<?php echo $row['id']; ?>" style= "color:white;" class="btn btn-success">Active</a></td>
+                <td >
+                <?php
 
+                    //NOT i will add function for change value in field isActive
+                    $sql = "SELECT 	*  FROM Announcement WHERE isActive = 1";
+                    $results = mysqli_query($conn, $sql);
+                    $sql2 = "SELECT *  FROM Announcement WHERE isActive = 0";
+                    $results2 = mysqli_query($conn, $sql2);   
 
+                    if (mysqli_num_rows($results) > 0) {
+                        // output data of each row
+                        while($row = mysqli_fetch_assoc($results)) {
+                            
+                            echo "<button id='btn' class='btn btn-success' onclick='\"UPDATE Announcement SET isActive = 0;\"'>Active</button>";
+                        }
+                    }  
+                    if (mysqli_num_rows($results2) > 0) {
+                        // output data of each row
+                        while($row2 = mysqli_fetch_assoc($results2)) {
+                            echo "<button id='btn' class='btn btn btn-secondary' onclick='\"UPDATE Announcement SET isActive = 1;\"'>Inactive</button>";
+
+                        }
+                    }  
+
+                    // if(isset($_POST['update'])){
+                    //     function myFunction1(){
+                    //      $result = mysqli_query($conn, "UPDATE Announcement SET isActive = 0;");
+                    //  return $result;
+                    //       else 
+                    //       function myFunction2(){
+                    //          $result = mysqli_query($conn, "UPDATE Announcement SET isActive = 1;");
+                    //      return $result;
+                              
+                    //          }
+                    //      }
+                                    
+     
+                ?>
+                </td>
             </tr>
         <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>
