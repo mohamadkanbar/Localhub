@@ -82,8 +82,8 @@ if(!empty($_GET['status'])){
         <tbody>
         <?php
         // Get member rows
-        // $id = $_SESSION["user"]["id"];
-        $result = $conn->query("SELECT * FROM Announcement ");
+        $id = $_SESSION["user"]["id"];
+        $result = $conn->query("SELECT * FROM Announcement WHERE userid=$id");
         
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
