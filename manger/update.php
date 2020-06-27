@@ -34,11 +34,11 @@ $result = mysqli_query($conn, "SELECT * FROM csvtable WHERE ID_CSV=$idFromURL");
 
 while($response = mysqli_fetch_array($result))
 {
-	$Nom_entreprise 			= $response['Nom_entreprise'];
-	$ville 			= $response['ville'];
-    $Nom_du_poste 			= $response['Nom_du_poste'];
-    $Descrption_du_poste 			= $response['Descrption_du_poste'];
-    $Date_de_debut 			= $response['Date_de_debut'];
+	$Nom_entreprise = $response['Nom_entreprise'];
+	$ville 	= $response['ville'];
+    $Nom_du_poste 	= $response['Nom_du_poste'];
+    $Descrption_du_poste = $response['Descrption_du_poste'];
+    $Date_de_debut 	= $response['Date_de_debut'];
 
 }
 ?>

@@ -13,10 +13,10 @@
           <!-- start the menu navabar with search -->
             <div class="navbar-nav">
 
-                <a class="nav-item nav-link active my-2 my-sm-0" href="../">
+                <a class="nav-item nav-link active my-2 my-sm-0" href="index.php">
                 home<span class="sr-only">(current)</span>
                 </a>
-                <a class="nav-item nav-link active my-2 my-sm-0" href="../">
+                <a class="nav-item nav-link active my-2 my-sm-0" href="profile.php">
                 my-profile<span class="sr-only">(current)</span>
                 </a>
                 

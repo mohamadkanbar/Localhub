@@ -1,7 +1,5 @@
-
 <?php 
 // include_once __DIR__."/../../Core/config2.php";
-
 include_once '../inc/topHeader.php' ?>
 <title><?php echo SITENAME;?> </title>
 <?php
@@ -11,7 +9,6 @@ include_once "../inc/navbar.php";
 <?php
 // Load the database configuration file
 include_once '../../../Core/config2.php';
-
 // Get status message
 if(!empty($_GET['status'])){
     switch($_GET['status']){
@@ -33,7 +30,6 @@ if(!empty($_GET['status'])){
     }
 }
 ?>
-
 <!-- Display status message -->
 <?php if(!empty($statusMsg)){ ?>
 <div class="col-xs-12">
@@ -42,15 +38,11 @@ if(!empty($_GET['status'])){
 <?php } ?>
 <div class="row">
     <!-- Import & Export link -->
-
     <div class="col-md-10 head">
         <div class="float-right" style="margin: 10px;">
             <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');" style="margin: 10px;"><i class="plus"></i> Import List of CSV file</a>
             
             <a href="create.php" class="btn btn-success"  style="margin: 10px; color:aliceblue;"><i class="plus"></i> Add New Event</a>
-
-
-
             <a href="../inc/files/Events.csv" download class="btn btn-success" style="margin: 10px; color:aliceblue;"><i class="plus" >Download CSV file example for filling in data</a>            
         </div>
     </div>
@@ -107,14 +99,12 @@ if(!empty($_GET['status'])){
                     </i>
                 </td>
             </tr>
-
         <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>
         <?php } ?>
         </tbody>
     </table>
 </div>
-
 <!-- script for activ and inactive -->
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
@@ -137,7 +127,6 @@ if(!empty($_GET['status'])){
         });
     </script>
 <script>
-
 // For downloae fils CSV
 function formToggle(ID){
     var element = document.getElementById(ID);
@@ -149,8 +138,5 @@ function formToggle(ID){
 }
 </script>
 <?php
-
-
 require_once '../inc/footer.php';
-
 ?>
