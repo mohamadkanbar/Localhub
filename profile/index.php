@@ -6,7 +6,10 @@ include_once 'inc/topHeader.php' ?>
 include_once "inc/header.php";
 include_once "inc/navbar.php";
 include_once "../Core/config2.php";
+
+
 ?>
+
 <div class="row">
     <!-- Import & Export link -->
 
@@ -30,18 +33,21 @@ include_once "../Core/config2.php";
                 <th>website</th>
                 <th>Start Date </th>
 				<th>End Date </th>
-                <th>Gatogery</th>
-                <th>Add to my vaforite</th>
+                <!-- <th>Gatogery</th> A INNER JOIN category G WHERE G.id = A.categoryid -->
+                <th>Add</th>
                 <th>Like</th>
                 
             </tr>
         </thead>
         <tbody>
         <?php
-		// Get member rows
-        $result = $conn->query("SELECT * FROM Announcement A INNER JOIN category G ON G.id = A.categoryid WHERE G.id = A.categoryid and A.isActive=1");
+        // Get member rows
+        $result = $conn->query("SELECT * FROM Announcement " );
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
+
+
+
         ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
@@ -53,14 +59,23 @@ include_once "../Core/config2.php";
                 <td><?php echo $row['website']; ?></td>
                 <td><?php echo $row['field1']; ?></td>
 				<td><?php echo $row['field2']; ?></td>
-                <td><?php echo $row['name']; ?></td>
+                <!-- <td><?php echo $row['name']; ?></td> -->
+                <td><button class="btn btn-success">Select</button></td>
                 <td>
-                    <form method="POST" action="add.php">
-                    <input type="button" name="submit" value="Select" class="btn btn-primary"/>
-                    </form>
+                    <i data="<?php echo $row['id'];?>" class="status_checks btn
+                    <?php echo ($row['recommend'])?
+                    'btn-success': 'btn-danger'?>"><?php echo ($row['recommend'])? 'Like' : 'Unlike'; ?>
+                    </i>
+                    <i style="font-size: 12px;"><?php 
+                        $result2= mysqli_query($conn, "SELECT SUM(recommend) AS totalsum FROM Announcement");
+
+                        $row = mysqli_fetch_assoc($result2); 
+                        
+                        $sum = $row['totalsum'];
+                        
+                        echo ($sum);
+                    ?></i>
                 </td>
-                <td><button class="btn btn-info">Like</button></td>
-                <!-- INSERT into favorite_profile (AnnouncementId, userId) VALUES (35,8) -->
             </tr>
 
         <?php } }else{ ?>
@@ -69,6 +84,33 @@ include_once "../Core/config2.php";
         </tbody>
     </table>
 </div>
+<?php
 
-</main>
+    
+?>
+<!-- script for activ and inactive -->
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).on('click','.status_checks',function(){
+        var status = ($(this).hasClass("btn-success")) ? '0' : '1';
+        var msg = (status=='0')? 'Unlike the Announcement' : 'Like the Announcement';
+        if(confirm("Are you sure to "+ msg)){
+            var current_element = $(this);
+            url = "ajax.php";
+            $.ajax({
+            type:"POST",
+            url: url,
+            data: {id:$(current_element).attr('data'),status:status},
+            success: function(data)
+            {   
+                location.reload();
+            }
+            });
+        }      
+        });
+    </script>
 <?php include_once "inc/footer.php";
+
+?>
+
+

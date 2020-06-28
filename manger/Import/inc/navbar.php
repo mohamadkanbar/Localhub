@@ -12,7 +12,7 @@
           <!-- start the menu navabar with search -->
             <div class="navbar-nav">
                 <a class="nav-item nav-link active my-2 my-sm-0" href="../../../index.php">
-                home<span class="sr-only">(current)</span>
+                Home<span class="sr-only">(current)</span>
                 </a>
                 <!-- <a class="nav-item nav-link active" href="importCSV.php">Import CSV file</a>  -->
                 <li class="nav-item dropdown active">

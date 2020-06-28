@@ -14,10 +14,10 @@
             <div class="navbar-nav">
 
                 <a class="nav-item nav-link active my-2 my-sm-0" href="index.php">
-                home<span class="sr-only">(current)</span>
+                Home<span class="sr-only">(current)</span>
                 </a>
                 <a class="nav-item nav-link active my-2 my-sm-0" href="profile.php">
-                my-profile<span class="sr-only">(current)</span>
+                My Profile<span class="sr-only">(current)</span>
                 </a>
                 
                 <form class="form-inline my-2 my-lg-0">
