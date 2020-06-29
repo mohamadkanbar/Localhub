@@ -12,18 +12,26 @@ if(isset($_POST['importSubmit'])){
     
     // Validate whether selected file is a CSV file
     if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){
-        
+
+        $fc = iconv('Windows-1252', 'utf-8', file_get_contents($_FILES['file']['tmp_name']));
+        // var_dump(file_get_contents($_FILES['file']['tmp_name']));
+        // echo 'start dumping'; var_dump($fc);exit;
+
+        file_put_contents('tmp/import.tmp', $fc);
+        $handle = fopen('tmp/import.tmp', "r");
+
+
         // If the file is uploaded
         if(is_uploaded_file($_FILES['file']['tmp_name'])){
             
             // Open uploaded CSV file with read-only mode
             $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
-            
             // Skip the first line
             fgetcsv($csvFile);
             
             // Parse data from CSV file line by line
             while(($line = fgetcsv($csvFile)) !== FALSE){
+            // var_dump($line); exit();
 
                 // title	disc	location	phone	website	email	field1	field2
                 // Get row data

@@ -21,7 +21,7 @@ include_once "../Core/config2.php";
     <table class="table table-striped table-bordered " style="margin: 30px;">
         <thead class="thead-dark ">
             <tr>
-                <th>#ID</th>
+                <!-- <th>#ID</th> -->
                 <th>title</th>
                 <th>disc</th>
                 <th>location</th>
@@ -39,12 +39,16 @@ include_once "../Core/config2.php";
         // SELECT * FROM favorite_profile F INNER JOIN category G ON G.name = F.AnnouncementId; 
 
         // SELECT title, disc, location from  Announcement A LEFT JOIN favorite_profile P ON A.id = P.AnnouncementId
-        $result = $conn->query("SELECT * FROM Announcement A RIGHT JOIN favorite_profile F ON A.id = F.AnnouncementId WHERE F.userId = A.userid ");
+        $result = $conn->query("SELECT * FROM Announcement LEFT JOIN favorite_profile ON Announcement.userid = favorite_profile.userid
+        ");
+        // var_dump($result);
+
+        
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
         ?>
             <tr>
-                <td><?php echo $row['id']; ?></td>
+                <!-- <td><?php echo $row['id']; ?></td> -->
                 <td><?php echo $row['title']; ?></td>
                 <td><?php echo $row['disc']; ?></td>
                 <td><?php echo $row['location']; ?></td>

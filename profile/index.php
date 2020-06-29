@@ -61,9 +61,8 @@ include_once "../Core/config2.php";
 				<td><?php echo $row['field2']; ?></td>
                 <!-- <td><?php echo $row['name']; ?></td> -->
                 <td>
-
+                    <a name ="submit" href="add.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">SELECT</a>
                 </td>
-
                 <td>
                     <i data="<?php echo $row['id'];?>" class="status_checks btn
                     <?php echo ($row['recommend'])?
