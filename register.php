@@ -1,5 +1,7 @@
 <?php 
 include "inc/topHeader.php"; 
+include "Classes/Register.class.php"; 
+
 session_destroy();
 ?>
 <title>Register <?php echo SITENAME;?></title>
@@ -14,8 +16,8 @@ include "inc/navbar.php";
             <?php
               if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['register'])){
                   $register = new Register();
-                  
-                  $register->setInput($_POST['firstname'],$_POST['lastname'], $_POST['email'], $_POST['password'], $_POST['confirm'],$_POST['customRadio']);
+                //   var_dump($_POST);exit;
+                  $register->setInput($_POST['firstname'],$_POST['lastname'], $_POST['email'], $_POST['password'],  $_POST['confirm'], $_POST['customRadio']);
                   $register->DisplayError();
               }
               ?>

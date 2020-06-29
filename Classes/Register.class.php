@@ -1,12 +1,12 @@
 <?php
 class Register extends MysqliConnect{
-    private $firstname, $lastname , $email, $password,$customRadio, $confirm;
+    private $firstname, $lastname , $email, $password, $customRadio, $confirm;
     public function setInput($firstname,$lastname, $email, $password, $confirm, $customRadio){
         $this->firstname =$this->esc($this->html($firstname));
         $this->lastname =$this->esc($this->html($lastname));
         $this->email = $this->esc($this->html($email));
-        $this->password = $this->esc($this->html($password));
         $this->customRadio = $this->esc($this->html($customRadio));
+        $this->password = $this->esc($this->html($password));
         $this->confirm = $this->esc($this->html($confirm));
 
         if($this->customRadio == "admin")
@@ -64,7 +64,7 @@ class Register extends MysqliConnect{
         } 
         private function InsertNewMember(){
             $password = md5(sha1($this->password));
-            $this->insert('users', "firstname ,lastname , email , password, isAdmin", "'$this->firstname','$this->lastname','$this->email','$password','$this->customRadio'");
+            $this->insert('users', "firstname ,lastname , email , password, isAdmin", "'$this->firstname','$this->lastname','$this->email', '$password', '$this->customRadio'");
             if($this->execute()){
                 $_SESSION['is_logged'] = true;
                 $_SESSION['user'] = [

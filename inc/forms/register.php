@@ -22,12 +22,13 @@
             <label for="confirm">Confirme Password</label>
             <input type="password" class="form-control col-md-6" value="<?php echo isset($_POST['confirm']) ? $_POST['confirm'] : null; ?>" name="confirm" id="confirm">
         </div>
+        </div class="form-group">
         <div class="custom-control form-group custom-radio">
         <input type="radio" id="customRadio1" name="customRadio" value="admin" class="custom-control-input">
         <label class="custom-control-label" for="customRadio1">Manger (I can adding the announcement)</label>
-        </div>
+        </div class="form-group">
         <div class="custom-control form-group custom-radio">
-        <input type="radio" id="customRadio2" name="customRadio" value="visitor" class="custom-control-input">
+        <input type="radio" id="customRadio2" name="customRadio" value="visitor" checked class="custom-control-input">
         <label class="custom-control-label" for="customRadio2">Visitor (I searching an announcements)</label>
         </div>
         <br>

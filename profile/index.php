@@ -60,14 +60,17 @@ include_once "../Core/config2.php";
                 <td><?php echo $row['field1']; ?></td>
 				<td><?php echo $row['field2']; ?></td>
                 <!-- <td><?php echo $row['name']; ?></td> -->
-                <td><button class="btn btn-success">Select</button></td>
+                <td>
+
+                </td>
+
                 <td>
                     <i data="<?php echo $row['id'];?>" class="status_checks btn
                     <?php echo ($row['recommend'])?
                     'btn-success': 'btn-danger'?>"><?php echo ($row['recommend'])? 'Like' : 'Unlike'; ?>
                     </i>
                     <i style="font-size: 12px;"><?php 
-                        $result2= mysqli_query($conn, "SELECT SUM(recommend) AS totalsum FROM Announcement");
+                        $result2= mysqli_query($conn, "SELECT COUNT(id) AS totalsum FROM liketable");
 
                         $row = mysqli_fetch_assoc($result2); 
                         
@@ -90,6 +93,11 @@ include_once "../Core/config2.php";
 ?>
 <!-- script for activ and inactive -->
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<!-- script for select  -->
+
+
+<!-- script for like -->
     <script type="text/javascript">
     $(document).on('click','.status_checks',function(){
         var status = ($(this).hasClass("btn-success")) ? '0' : '1';
@@ -109,6 +117,7 @@ include_once "../Core/config2.php";
         }      
         });
     </script>
+
 <?php include_once "inc/footer.php";
 
 ?>

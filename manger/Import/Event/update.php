@@ -12,8 +12,9 @@ include_once "../inc/navbar.php";
 include_once '../../../Core/config2.php';
 
 $userid = $_SESSION['user']["id"];
+$id = $_REQUEST["id"];
 
-    $result = $conn->query("SELECT * FROM Announcement WHERE userid=$userid");
+    $result = $conn->query("SELECT * FROM Announcement WHERE userId = $userid AND id=$id");
     // var_dump($result);
     if($result->num_rows > 0){
     while($row = $result->fetch_assoc()){
@@ -87,7 +88,7 @@ if(isset($_POST['title']) && isset($_POST['disc']) && isset($_POST['phone']) && 
         $field2 = mysqli_real_escape_string($conn, htmlspecialchars($_POST['field2']));
     
                 // UPDATE USER DATA               
-                $query = mysqli_query($conn,"UPDATE Announcement SET title='$title', disc='$disc', location='$location', phone='$phone', email='$email', website='$website', field1='$field1', field2='$field2' WHERE userid='$userid'" );
+                $query = mysqli_query($conn,"UPDATE Announcement SET title='$title', disc='$disc', location='$location', phone='$phone', email='$email', website='$website', field1='$field1', field2='$field2' WHERE userid='$userid' AND id = id" );
 
                 if($query == true){
                     echo "<p style='color:green;'>The announcement is Updated by successfully</p>";
