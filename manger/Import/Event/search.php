@@ -86,5 +86,5 @@ include_once '../../../Core/config2.php';
     </table>
 </div>
 <?php
-require 'inc/footer.php';
+require '../inc/footer.php';
 ?>
