@@ -47,7 +47,6 @@ include_once __DIR__."../../Core/config2.php";
                 <th>phone</th>
                 <th>email</th>
                 <th>website</th>
-                <th>More details</th>
             </tr>
         </thead>
         <tbody>
@@ -76,7 +75,6 @@ include_once __DIR__."../../Core/config2.php";
                 <td><?php echo $row['phone']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['website']; ?></td>
-                <td><a href="register.php">For mort details register please</a> </td>
             </tr>
         <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>

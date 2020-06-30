@@ -61,7 +61,17 @@ include_once "../Core/config2.php";
 				<td><?php echo $row['field2']; ?></td>
                 <!-- <td><?php echo $row['name']; ?></td> -->
                 <td>
-                    <a name ="submit" href="add.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">SELECT</a>
+                    <a name ="submit2" href="index.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">SELECT</a>
+                    <?php
+                    $userid = $_SESSION['user']['id'];
+                        $AnnounidToDB = $row['id'];
+                    if(isset($_POST['submit2'])) {
+                        // $locationTodb = mysqli_real_escape_string($conn,$_POST['flocation']);
+                        $conn->query("INSERT INTO favorite_profile (AnnouncementId, userId) VALUES ('$AnnounidToDB','$userid')");
+
+                    }
+                    ?>
+
                 </td>
                 <td>
                     <i data="<?php echo $row['id'];?>" class="status_checks btn
@@ -69,7 +79,7 @@ include_once "../Core/config2.php";
                     'btn-success': 'btn-danger'?>"><?php echo ($row['recommend'])? 'Like' : 'Unlike'; ?>
                     </i>
                     <i style="font-size: 12px;"><?php 
-                        $result2= mysqli_query($conn, "SELECT COUNT(id) AS totalsum FROM liketable");
+                        $result2= mysqli_query($conn, "SELECT Count(id) AS totalsum FROM liketable ");
 
                         $row = mysqli_fetch_assoc($result2); 
                         

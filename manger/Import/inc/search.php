@@ -47,14 +47,14 @@ include_once '../../Core/config2.php';
                 <th>phone</th>
                 <th>email</th>
                 <th>website</th>
-                <th>More details</th>
             </tr>
         </thead>
         <tbody>
         <?php
+        $id = $_SESSION['user']['id'];
             if (isset($_GET['search']) || !empty($_GET['search'])) {
                 $keyword = $_GET['search'];
-        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' AND isActive=1")
+        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' OR userid = $id ")
         ;
         // $query = "(SELECT id, title, disc , phone, location, email, website FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%') 
         //    UNION
@@ -76,7 +76,6 @@ include_once '../../Core/config2.php';
                 <td><?php echo $row['phone']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['website']; ?></td>
-                <td><a href="register.php">For mort details register please</a> </td>
             </tr>
         <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>

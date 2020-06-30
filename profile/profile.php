@@ -39,7 +39,7 @@ include_once "../Core/config2.php";
         // SELECT * FROM favorite_profile F INNER JOIN category G ON G.name = F.AnnouncementId; 
 
         // SELECT title, disc, location from  Announcement A LEFT JOIN favorite_profile P ON A.id = P.AnnouncementId
-        $result = $conn->query("SELECT * FROM Announcement LEFT JOIN favorite_profile ON Announcement.userid = favorite_profile.userid
+        $result = $conn->query("SELECT * FROM favorite_profile  LEFT JOIN Announcement ON Announcement.userid = favorite_profile.userid
         ");
         // var_dump($result);
 

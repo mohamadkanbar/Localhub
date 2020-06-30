@@ -1,23 +1,20 @@
 <?php 
-// include_once __DIR__."/../../Core/config2.php";
-include_once '../inc/topHeader.php' ?>
+include_once 'inc/topHeader.php' ?>
 <title><?php echo SITENAME;?> </title>
 <?php
-include_once "../inc/header.php";
-include_once "../inc/navbar.php";
+include_once "inc/header.php";
+include_once "inc/navbar.php";
+include_once "../Core/config2.php";
 ?>
-<!-- نحكي صوت؟-->
 <?php
-// Load the database configuration file
-include_once '../../../Core/config2.php';
-
     // if (isset($_GET['search']) || !empty($_GET['search'])) {
     //     $search = mysqli_real_escape_string($db->link, $fm->validation($_GET['search']));
     // }
     // else{
     //     header("Location:404.php");
     // }
-
+?>
+<?php
     // $query = "SELECT * FROM news_post WHERE title LIKE '%$search%' OR body LIKE '%$search%' OR tags LIKE '%search%'";
     // $post = $db->select($query);
     // if ($post) {
@@ -54,10 +51,12 @@ include_once '../../../Core/config2.php';
         </thead>
         <tbody>
         <?php
-            if (isset($_GET['search']) || !empty($_GET['search'])) {
+        $id=$_SESSION['user']['id'];
+
+        if (isset($_GET['search']) || !empty($_GET['search'])) {
                 $keyword = $_GET['search'];
-                $id=$_SESSION['user']['id'];
-        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' OR userid=$id OR isActive = 1");
+        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' OR userid= $id ")
+        ;
         // $query = "(SELECT id, title, disc , phone, location, email, website FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%') 
         //    UNION
         //    (SELECT content, title, 'topic' as type FROM topics WHERE content LIKE '%" . 
@@ -66,6 +65,7 @@ include_once '../../../Core/config2.php';
         //    (SELECT content, title, 'comment' as type FROM comments WHERE content LIKE '%" . 
         //    $keyword . "%' OR title LIKE '%" . $keyword ."%')";
         // mysqli_query($query);
+
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
         ?>
@@ -85,5 +85,5 @@ include_once '../../../Core/config2.php';
     </table>
 </div>
 <?php
-require '../inc/footer.php';
+require 'inc/footer.php';
 ?>
