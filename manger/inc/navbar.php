@@ -34,10 +34,10 @@
 
                 </li>
                 
-                <form class="form-inline my-2 my-lg-0">
-                  <input style="margin-left:20px;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <form class="form-inline my-2 my-lg-0" action="search.php" method="GET" class="search_form">
+              <input style="margin-left:30px;" class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+              </form>
           <!-- end the menu navabar with search -->
           <!-- start the all button for log
               <div style="margin-left: 30;">

@@ -4,7 +4,7 @@ include_once 'inc/topHeader.php' ?>
 <?php
 include_once "inc/header.php";
 include_once "inc/navbar.php";
-include_once "Core/config2.php";
+include_once __DIR__."/../Core/config2.php";
 ?>
 <?php
     // if (isset($_GET['search']) || !empty($_GET['search'])) {
@@ -54,7 +54,7 @@ include_once "Core/config2.php";
         <?php
             if (isset($_GET['search']) || !empty($_GET['search'])) {
                 $keyword = $_GET['search'];
-        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' AND isActive=1 AND categoryid = 9")
+        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' AND isActive=1")
         ;
         // $query = "(SELECT id, title, disc , phone, location, email, website FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%') 
         //    UNION

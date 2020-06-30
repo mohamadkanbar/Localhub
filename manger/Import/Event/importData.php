@@ -14,6 +14,7 @@ if(isset($_POST['importSubmit'])){
     if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){
 
         $fc = iconv('Windows-1252', 'utf-8', file_get_contents($_FILES['file']['tmp_name']));
+        
         // var_dump(file_get_contents($_FILES['file']['tmp_name']));
         // echo 'start dumping'; var_dump($fc);exit;
 

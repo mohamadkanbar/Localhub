@@ -4,7 +4,7 @@ include_once 'inc/topHeader.php' ?>
 <?php
 include_once "inc/header.php";
 include_once "inc/navbar.php";
-include_once "Core/config2.php";
+include_once __DIR__."../../Core/config2.php";
 ?>
 <?php
     // if (isset($_GET['search']) || !empty($_GET['search'])) {
