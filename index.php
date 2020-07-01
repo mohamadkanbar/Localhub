@@ -30,13 +30,12 @@ include_once "Core/config2.php";
                 <th>website</th>
                 <th>Start Date </th>
 				<th>End Date </th>
-				<th>Gatogery</th>
             </tr>
         </thead>
         <tbody>
         <?php
 		// Get member rows
-        $result = $conn->query("SELECT * FROM Announcement A INNER JOIN category G ON G.id = A.categoryid WHERE G.id = A.categoryid and A.isActive=1");
+        $result = $conn->query("SELECT * FROM Announcement  WHERE  isActive=1");
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
         ?>
@@ -50,7 +49,6 @@ include_once "Core/config2.php";
                 <td><?php echo $row['website']; ?></td>
                 <td><?php echo $row['field1']; ?></td>
 				<td><?php echo $row['field2']; ?></td>
-				<td><?php echo $row['name']; ?></td>
             </tr>
 
         <?php } }else{ ?>

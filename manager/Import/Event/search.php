@@ -57,7 +57,7 @@ include_once '../../../Core/config2.php';
             if (isset($_GET['search']) || !empty($_GET['search'])) {
                 $keyword = $_GET['search'];
                 $id=$_SESSION['user']['id'];
-        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%' OR userid=$id OR isActive = 1");
+        $result = $conn->query("SELECT  * FROM Announcement WHERE title LIKE '%" .$keyword. "%'  AND userid = $id");
         // $query = "(SELECT id, title, disc , phone, location, email, website FROM Announcement WHERE title LIKE '%" .$keyword. "%' OR disc LIKE '%" . $keyword ."%') 
         //    UNION
         //    (SELECT content, title, 'topic' as type FROM topics WHERE content LIKE '%" . 
