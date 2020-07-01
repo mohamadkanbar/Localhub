@@ -1,4 +1,3 @@
-
 <?php 
 include_once 'inc/topHeader.php' ?>
 <title><?php echo SITENAME;?> </title>
@@ -6,10 +5,7 @@ include_once 'inc/topHeader.php' ?>
 include_once "inc/header.php";
 include_once "inc/navbar.php";
 include_once "../Core/config2.php";
-
-
 ?>
-
 <div class="row">
     <!-- Import & Export link -->
 
@@ -46,8 +42,6 @@ include_once "../Core/config2.php";
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
 
-
-
         ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
@@ -61,17 +55,25 @@ include_once "../Core/config2.php";
 				<td><?php echo $row['field2']; ?></td>
                 <!-- <td><?php echo $row['name']; ?></td> -->
                 <td>
-                    <a name ="submit2" href="index.php?id=<?php  echo $row['id']; ?>" class="btn btn-success">SELECT</a>
-                    <?php
-                    $userid = $_SESSION['user']['id'];
-                        $AnnounidToDB = $row['id'];
-                    if(isset($_POST['submit2'])) {
-                        // $locationTodb = mysqli_real_escape_string($conn,$_POST['flocation']);
-                        $conn->query("INSERT INTO favorite_profile (AnnouncementId, userId) VALUES ('$AnnounidToDB','$userid')");
+                   
+              <!--                    
+                <form class="form-inline my-2 my-lg-0" action="search.php" method="GET" class="search_form">
+              <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+              </form> -->
 
-                    }
+                <form action="index.php?<?php echo $row['id']; ?>" method="post" enctype="multipart/form-data">
+                <button type="submit2" class="btn btn-primary" name="submit2">SELECT</button>
+                </form>
+                   <?php
+                   $userid = $_SESSION['user']['id'];
+                   // var_dump($_POST['submit']); exit();
+                   if(isset($_POST['submit2'])) {
+                   
+                       $AnnounidToDB = $row['id'];
+                       // $AnnounidToDB =  $_GET['Announcement']['id'];
+                       $result2 = mysqli_query($conn,"INSERT INTO favorite_profile (AnnouncementId, userId) VALUES ('$AnnounidToDB','$userid') ");
+                   }
                     ?>
-
                 </td>
                 <td>
                     <i data="<?php echo $row['id'];?>" class="status_checks btn

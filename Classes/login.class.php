@@ -54,7 +54,7 @@ class Login extends MysqliConnect{
         if($this->checkInput()){
             if($this->makeUserLogged()==true){
                 if($_SESSION['user']["isAdmin"] )
-                    header("Location: manger/index.php");
+                    header("Location: manager/index.php");
                 else
                     header("Location: profile/index.php");
                 }else{

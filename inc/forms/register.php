@@ -25,7 +25,7 @@
         </div class="form-group">
         <div class="custom-control form-group custom-radio">
         <input type="radio" id="customRadio1" name="customRadio" value="admin" class="custom-control-input">
-        <label class="custom-control-label" for="customRadio1">Manger (I can adding the announcement)</label>
+        <label class="custom-control-label" for="customRadio1">Manager (I can adding the announcement)</label>
         </div class="form-group">
         <div class="custom-control form-group custom-radio">
         <input type="radio" id="customRadio2" name="customRadio" value="visitor" checked class="custom-control-input">
