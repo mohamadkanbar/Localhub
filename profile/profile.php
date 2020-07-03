@@ -50,7 +50,7 @@ include_once "../Core/config2.php";
                 <td><?php echo $row['website']; ?></td>
                 <td><?php echo $row['field1']; ?></td>
                 <td><?php echo $row['field2']; ?></td>
-                <td><a href="delete.php?id=<?php  echo $row['id']; ?>" class="btn btn-danger">Delete</a></td>
+                <!-- <td><a href="delete.php?id=<?php  echo $row['id']; ?>" class="btn btn-danger">Delete</a></td> -->
      
             </tr>
         <?php } }else{ ?>
