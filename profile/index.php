@@ -53,42 +53,18 @@ include_once "../Core/config2.php";
                 <td><?php echo $row['website']; ?></td>
                 <td><?php echo $row['field1']; ?></td>
 				<td><?php echo $row['field2']; ?></td>
-                <!-- <td><?php echo $row['name']; ?></td> -->
+                <!-- <td>
+                    <?php //echo $row['name']; ?>
+                </td> -->
                 <td>
-                   
-              <!--                    
-                <form class="form-inline my-2 my-lg-0" action="search.php" method="GET" class="search_form">
-              <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
-              </form> -->
-
-                <form action="index.php?<?php echo $row['id']; ?>" method="post" enctype="multipart/form-data">
-                <button type="submit2" class="btn btn-primary" name="submit2">SELECT</button>
-                </form>
-                   <?php
-                   $userid = $_SESSION['user']['id'];
-                   // var_dump($_POST['submit']); exit();
-                   if(isset($_POST['submit2'])) {
-                   
-                       $AnnounidToDB = $row['id'];
-                       // $AnnounidToDB =  $_GET['Announcement']['id'];
-                       $result2 = mysqli_query($conn,"INSERT INTO favorite_profile (AnnouncementId, userId) VALUES ('$AnnounidToDB','$userid') ");
-                   }
-                    ?>
+                 
+                <i data="<?php echo $row['id'];?>" class="status_checks btn
+                    <?php echo ($row['recommend'])?
+                    'btn-success': 'btn-danger'?>"><?php echo ($row['recommend'])? 'Selecte' : 'Unselect'; ?>
+                    </i>
                 </td>
                 <td>
-                    <i data="<?php echo $row['id'];?>" class="status_checks btn
-                    <?php echo ($row['recommend'])?
-                    'btn-success': 'btn-danger'?>"><?php echo ($row['recommend'])? 'Like' : 'Unlike'; ?>
-                    </i>
-                    <i style="font-size: 12px;"><?php 
-                        $result2= mysqli_query($conn, "SELECT Count(id) AS totalsum FROM liketable ");
-
-                        $row = mysqli_fetch_assoc($result2); 
-                        
-                        $sum = $row['totalsum'];
-                        
-                        echo ($sum);
-                    ?></i>
+              
                 </td>
             </tr>
 
@@ -105,11 +81,33 @@ include_once "../Core/config2.php";
 <!-- script for activ and inactive -->
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
-<!-- script for select  -->
+<!-- Start script for select  -->
+<script type="text/javascript">
+    $(document).on('click','.status_checks',function(){
+        var status = ($(this).hasClass("btn-success")) ? '0' : '1';
+        var msg = (status=='0')? 'Unselect the Announcement' : 'Select the Announcement';
+        if(confirm("Are you sure to "+ msg)){
+            var current_element = $(this);
+            url = "ajax.php";
+            $.ajax({
+            type:"POST",
+            url: url,
+            data: {id:$(current_element).attr('data'),status:status},
+            success: function(data)
+            {   
+                location.reload();
+            }
+            });
+        }      
+        });
+</script>
+    
+<!-- end script for select  -->
 
 
-<!-- script for like -->
-    <script type="text/javascript">
+
+<!-- Start script for like -->
+    <!-- <script type="text/javascript">
     $(document).on('click','.status_checks',function(){
         var status = ($(this).hasClass("btn-success")) ? '0' : '1';
         var msg = (status=='0')? 'Unlike the Announcement' : 'Like the Announcement';
@@ -127,7 +125,9 @@ include_once "../Core/config2.php";
             });
         }      
         });
-    </script>
+    </script> -->
+<!-- End script for like -->
+
 
 <?php include_once "inc/footer.php";
 
