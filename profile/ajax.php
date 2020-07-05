@@ -1,11 +1,8 @@
 <?php 
-
 include_once '../Core/config2.php';
-
 session_start();
 $userid= $_SESSION['user']['id'];
 var_dump($userid);
-
 
 extract($_POST);
 $Announcement_id=$conn->real_escape_string($id);

@@ -42,8 +42,8 @@ if(!empty($_GET['status'])){
         <div class="float-right" style="margin: 10px;">
             <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');" style="margin: 10px;"><i class="plus"></i> Import List of CSV file</a>
             
-            <a href="create.php" class="btn btn-success"  style="margin: 10px; color:aliceblue;"><i class="plus"></i> Add New Event</a>
-            <a href="../inc/files/Event_utf.csv" download class="btn btn-success" style="margin: 10px; color:aliceblue;"><i class="plus" >Download CSV file example for filling in data</a>            
+            <a href="create.php" class="btn btn-success"  style="margin: 10px; color:aliceblue;"><i class="plus"></i> Add New Stage</a>
+            <a href="../inc/files/Stage.csv" download class="btn btn-success" style="margin: 10px; color:aliceblue;"><i class="plus" >Download CSV file example for filling in data</a>            
         </div>
     </div>
     <!-- CSV file upload form -->
@@ -64,8 +64,8 @@ if(!empty($_GET['status'])){
                 <th>phone</th>
                 <th>email</th>
                 <th>website</th>
-                <th>Start Date </th>
-                <th>End Date </th>
+                <th>From Date </th>
+                <th>To Date </th>
                 <th>Update</th>
                 <th>Delete</th>
                 <th>Active</th>

@@ -49,12 +49,12 @@ $id = $_REQUEST["id"];
     <td>  <input type="email" name="email" value = "<?php echo $row['email']; ?>"></td>
     </tr>
     <tr>
-    <td> <label>Date Start the Event : </label></td>
+    <td> <label>Date Start the Stage : </label></td>
     <td>  <input type="date" name="field1" value = "<?php echo $row['field1']; ?>"></td>
     </tr>
     <br><br>
     <tr>
-    <td><label>Date End the Event    : </label></td>
+    <td><label>Date End the Stage    : </label></td>
     <td><input type="date" name="field2" value="<?php echo $row['field2']; ?>"></td>
     </tr>
     <br>

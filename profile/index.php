@@ -60,73 +60,63 @@ $userid = $_SESSION['user']["id"];
                     <?php //echo $row['name']; ?>
                 </td> -->
                 <td>
-                 
                 <i data="<?php echo $row['id'];?>" class="status_checks btn
                     <?php echo ($row['recommend'])?
                     'btn-success': 'btn-danger'?>"><?php echo ($row['recommend'])? 'Selecte' : 'Unselect'; ?>
                     </i>
                 </td>
                 <td>
-  
                 <?php
                         if (isset($_POST['liked'])) {
-                            $idannouncement = $_POST['idannouncement'];
+                            $idannouncement = $_POST['id'];
                             $result = mysqli_query($conn, "SELECT * FROM Announcement WHERE id=$idannouncement");
                             $row = mysqli_fetch_array($result);
-                            $n = $row['field4'];
+                            $n = $row['likes'];
 
                             mysqli_query($conn, "INSERT INTO liketable (iduser, idannouncement) VALUES ($userid, $idannouncement)");
-                            mysqli_query($conn, "UPDATE Announcement SET field4=$n+1 WHERE id=$idannouncement");
+                            mysqli_query($conn, "UPDATE Announcement SET likes=$n+1 WHERE id=$idannouncement");
 
                             echo $n+1;
                             exit();
                         }
                         if (isset($_POST['unliked'])) {
-                            $idannouncement = $_POST['idannouncement'];
+                            $idannouncement = $_POST['id'];
                             $result = mysqli_query($conn, "SELECT * FROM Announcement WHERE id=$idannouncement");
                             $row = mysqli_fetch_array($result);
-                            $n = $row['field4'];
+                            $n = $row['likes'];
 
                             mysqli_query($conn, "DELETE FROM liketable WHERE idannouncement=$idannouncement AND iduser=$userid");
-                            mysqli_query($conn, "UPDATE Announcement SET field4=$n-1 WHERE id=$idannouncement");
+                            mysqli_query($conn, "UPDATE Announcement SET likes=$n-1 WHERE id=$idannouncement");
                             
                             echo $n-1;
                             exit();
                         }
-
-                        // Retrieve Announcement from the database
-                        $Announcement = mysqli_query($conn, "SELECT * FROM Announcement ");
                 ?>
-                <?php while ($row = mysqli_fetch_array($Announcement)) { 
+                <?php 
                     ?>
+                    <div class="post">
+                    <!-- <?php echo $row['text']; ?> -->
 
-                <div class="post">
-                    <!-- <?php echo $row['title']; ?> -->
+                        <div style="padding: 2px; margin-top: 5px;">
+                        <?php 
 
-                    <div style="padding: 2px; margin-top: 5px;">
-                    <?php 
+                            // determine if user has already liked this post
+                            $results = mysqli_query($conn, "SELECT * FROM liketable WHERE iduser=$userid AND idannouncement=".$row['id']."");
 
-                        // determine if user has already liked this post
-                        $results = mysqli_query($conn, "SELECT * FROM liketable WHERE iduser=$userid AND idannouncement=".$row['id']."");
-
-                        if (mysqli_num_rows($results) == 0 ): ?>
-                            <!-- user already liketable post -->
-                            <span class="unlike fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
-                            <span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
-                        <?php else: ?>
-                            <!-- user has not yet liked post -->
-                            <span class="like fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
-                            <span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
-                        <?php endif ?>
-
-                        <span class="likes_count"><?php echo $row['field4']; ?> likes</span>
+                            if (mysqli_num_rows($results) == 1 ): ?>
+                                <!-- user already liketable post -->
+                                <span class="unlike fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+                                <span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+                            <?php else: ?>
+                                <!-- user has not yet liked post -->
+                                <span class="like fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+                                <span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+                            <?php endif ?>
+                            <span class="likes_count"><?php echo $row['likes']; ?> likes</span>
+                        </div>
                     </div>
-                </div>
-
-                <?php } ?>
-                 </td>
+                    </td>
             </tr>
-
         <?php } }else{ ?>
             <tr><td colspan="5">No member(s) found...</td></tr>
         <?php }?>
@@ -180,7 +170,7 @@ $userid = $_SESSION['user']["id"];
 					'idannouncement': idannouncement
 				},
 				success: function(response){
-					$post.parent().find('span.likes_count').text(response + " field4");
+					$post.parent().find('span.likes_count').text(response + " likes");
 					$post.addClass('hide');
 					$post.siblings().removeClass('hide');
 				}
@@ -200,7 +190,7 @@ $userid = $_SESSION['user']["id"];
 					'idannouncement': idannouncement
 				},
 				success: function(response){
-					$post.parent().find('span.likes_count').text(response + " field4");
+					$post.parent().find('span.likes_count').text(response + " likes");
 					$post.addClass('hide');
 					$post.siblings().removeClass('hide');
 				}
